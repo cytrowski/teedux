@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "test": "jest"
   },
   "keywords": [
     "redux",
@@ -15,6 +16,9 @@
   "author": "Bartosz Cytrowski <bartosz.cytrowski@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "@types/jest": "^23.3.1",
+    "jest": "^23.5.0",
+    "ts-jest": "^23.1.3",
     "typescript": "^3.0.1"
   },
   "dependencies": {},

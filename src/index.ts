@@ -5,15 +5,15 @@ type TActionCreator<T> = (payload: T) => ({
 })
 interface IReduxStandardAction {
   type: string
-  payload: object
+  payload?: object
 }
 type TIdentity = <T>(x: T) => T
 interface IActionTypeIndex {
   [key: string]: boolean
 }
 interface IReduxDuck <S>{
-  getReducer: () => (state: S, action: IReduxStandardAction) => S,
-  defineAction: <T extends object>(
+  getReducer: () => (state: S | undefined, action: IReduxStandardAction) => S,
+  defineAction: <T extends object | void>(
     actionType: string,
     handler: THandler<S, T>
   ) => TActionCreator<T>
