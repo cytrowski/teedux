@@ -16,5 +16,14 @@
   "license": "ISC",
   "devDependencies": {
     "typescript": "^3.0.1"
-  }
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cytrowski/teedux.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cytrowski/teedux/issues"
+  },
+  "homepage": "https://github.com/cytrowski/teedux#readme"
 }
