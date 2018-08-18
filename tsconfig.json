@@ -3,7 +3,11 @@
     "target": "es5",
     "module": "commonjs",
     "declaration": true,
+    "rootDir": "./src",
     "outDir": "./dist",
-    "strict": true
+    "strict": true,
+    "lib": [
+      "es6", "dom", "es2017.object"
+    ]
   }
 }

@@ -7,23 +7,26 @@ interface IReduxStandardAction {
   type: string
   payload: object
 }
-
-const identity = <T>(x: T): T => x
-
-const actionTypeIndex = {}
-
-export const makeReduxDuck = <S>(
-  prefix: string,
-  initialState: S
-): {
+type TIdentity = <T>(x: T) => T
+interface IActionTypeIndex {
+  [key: string]: boolean
+}
+interface IReduxDuck <S>{
   getReducer: () => (state: S, action: IReduxStandardAction) => S,
   defineAction: <T extends object>(
     actionType: string,
     handler: THandler<S, T>
   ) => TActionCreator<T>
-} => {
+}
 
-  const actionHandlers = {}
+const identity: TIdentity = x => x
+const actionTypeIndex: IActionTypeIndex = {}
+
+export const makeReduxDuck = <S>(
+  prefix: string,
+  initialState: S
+): IReduxDuck<S> => {
+  const actionHandlers: {[key: string]: THandler<S, any>} = {}
 
   return {
     getReducer: () => (state = initialState, action) => Object.assign(
