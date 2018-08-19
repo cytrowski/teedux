@@ -1,6 +1,7 @@
 # Teedux
 
 [![Build Status](https://travis-ci.org/cytrowski/teedux.png?branch=master)](https://travis-ci.org/cytrowski/teedux)
+[![codecov](https://codecov.io/gh/cytrowski/teedux/branch/master/graph/badge.svg)](https://codecov.io/gh/cytrowski/teedux)
 
 ## Disclaimer
 
