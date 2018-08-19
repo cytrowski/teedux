@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/cytrowski/teedux.png?branch=master)](https://travis-ci.org/cytrowski/teedux)
 [![codecov](https://codecov.io/gh/cytrowski/teedux/branch/master/graph/badge.svg)](https://codecov.io/gh/cytrowski/teedux)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 
 ## Disclaimer
 
