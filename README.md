@@ -1,6 +1,6 @@
 # Teedux
 
-[![Build Status](https://travis-ci.org/cytrowski/teedux.png?branch=master)](https://travis-ci.org/https://travis-ci.org/cytrowski/teedux)
+[![Build Status](https://travis-ci.org/cytrowski/teedux.png?branch=master)](https://travis-ci.org/cytrowski/teedux)
 
 ## Disclaimer
 
