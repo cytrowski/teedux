@@ -11,7 +11,7 @@ type TIdentity = <T>(x: T) => T
 interface IActionTypeIndex {
   [key: string]: boolean
 }
-interface IReduxDuck <S>{
+interface IReduxDuck<S> {
   getReducer: () => (state: S | undefined, action: IReduxStandardAction) => S,
   defineAction: <T extends object | void>(
     actionType: string,
@@ -26,15 +26,23 @@ export const makeReduxDuck = <S>(
   prefix: string,
   initialState: S
 ): IReduxDuck<S> => {
-  const actionHandlers: {[key: string]: THandler<S, any>} = {}
+  const actionHandlers: { [key: string]: THandler<S, any> } = {}
 
   return {
-    getReducer: () => (state = initialState, action) => Object.assign(
-      {},
-      state,
-      (actionHandlers[action.type] || identity)(state, action.payload)
-    ),
-    defineAction: (actionType, handler) => { 
+    getReducer: () => (state = initialState, action) => {
+      const handler = actionHandlers[action.type]
+
+      if (handler) {
+        return Object.assign(
+          {},
+          state,
+          handler(state, action.payload)
+        )
+      }
+
+      return state
+    },
+    defineAction: (actionType, handler) => {
       const type = `${prefix}/${actionType}`
 
       if (actionTypeIndex[type] === true) {

@@ -7,7 +7,11 @@ exports.makeReduxDuck = function (prefix, initialState) {
     return {
         getReducer: function () { return function (state, action) {
             if (state === void 0) { state = initialState; }
-            return Object.assign({}, state, (actionHandlers[action.type] || identity)(state, action.payload));
+            var handler = actionHandlers[action.type];
+            if (handler) {
+                return Object.assign({}, state, handler(state, action.payload));
+            }
+            return state;
         }; },
         defineAction: function (actionType, handler) {
             var type = prefix + "/" + actionType;

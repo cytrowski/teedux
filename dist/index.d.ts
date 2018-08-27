@@ -5,11 +5,11 @@ declare type TActionCreator<T> = (payload: T) => ({
 });
 interface IReduxStandardAction {
     type: string;
-    payload: object;
+    payload?: object;
 }
 interface IReduxDuck<S> {
-    getReducer: () => (state: S, action: IReduxStandardAction) => S;
-    defineAction: <T extends object>(actionType: string, handler: THandler<S, T>) => TActionCreator<T>;
+    getReducer: () => (state: S | undefined, action: IReduxStandardAction) => S;
+    defineAction: <T extends object | void>(actionType: string, handler: THandler<S, T>) => TActionCreator<T>;
 }
 export declare const makeReduxDuck: <S>(prefix: string, initialState: S) => IReduxDuck<S>;
 export {};

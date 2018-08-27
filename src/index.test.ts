@@ -28,8 +28,12 @@ test('makes duck', () => {
 
   expect(duck.getReducer()(undefined, { type: '@@INIT' })).toEqual(initialState)
 
-  // TODO make it true 
-  // expect(duck.getReducer()(undefined, { type: '@@INIT' })).toBe(initialState)
+  expect(duck.getReducer()(undefined, { type: '@@INIT' })).toBe(initialState)
+
+  const state = {
+    counterValue: 4
+  }
+  expect(duck.getReducer()(state, { type: '@@FOO' })).toBe(state)
 
   expect(() => {
     duck.defineAction<{ title: string }>(
