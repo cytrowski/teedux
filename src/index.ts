@@ -52,7 +52,7 @@ export const makeReduxDuck = <S>(
       actionTypeIndex[type] = true
       actionHandlers[type] = handler
 
-      return (payload) => ({
+      return (payload?) => ({
         type,
         payload
       })
