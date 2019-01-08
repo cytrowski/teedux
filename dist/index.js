@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var identity = function (x) { return x; };
+// const identity: TIdentity = x => x
 var actionTypeIndex = {};
 exports.makeReduxDuck = function (prefix, initialState) {
     var actionHandlers = {};
@@ -23,6 +23,17 @@ exports.makeReduxDuck = function (prefix, initialState) {
             return function (payload) { return ({
                 type: type,
                 payload: payload
+            }); };
+        },
+        definePayloadlessAction: function (actionType, handler) {
+            var type = prefix + "/" + actionType;
+            if (actionTypeIndex[type] === true) {
+                throw new Error("Duplicate action type: " + type);
+            }
+            actionTypeIndex[type] = true;
+            actionHandlers[type] = handler;
+            return function () { return ({
+                type: type
             }); };
         }
     };

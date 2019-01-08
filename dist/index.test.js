@@ -31,4 +31,15 @@ test('makes duck', function () {
     expect(function () {
         duck.defineAction('INCREMENT', function () { return ({}); });
     }).toThrowError("Duplicate action type: counter/INCREMENT");
+    var reset = duck.defineAction('RESET', function () { return initialState; });
+    expect(duck.getReducer()({ counterValue: 1 }, reset(undefined))).toEqual({
+        counterValue: 10
+    });
+    var reset2 = duck.definePayloadlessAction('RESET2', function () { return initialState; });
+    expect(duck.getReducer()({ counterValue: 1 }, reset2())).toEqual({
+        counterValue: 10
+    });
+    expect(function () {
+        duck.definePayloadlessAction('RESET2', function () { return ({}); });
+    }).toThrowError("Duplicate action type: counter/RESET2");
 });
