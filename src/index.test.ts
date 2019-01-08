@@ -41,4 +41,26 @@ test('makes duck', () => {
       () => ({})
     )
   }).toThrowError(`Duplicate action type: counter/INCREMENT`)
+
+  const reset = duck.defineAction<undefined>(
+    'RESET',
+    () => initialState
+  )
+
+  expect(duck.getReducer()({ counterValue: 1 }, reset(undefined))).toEqual({
+    counterValue: 10
+  })
+
+  const reset2 = duck.definePayloadlessAction('RESET2', () => initialState)
+
+  expect(duck.getReducer()({ counterValue: 1 }, reset2())).toEqual({
+    counterValue: 10
+  })
+
+  expect(() => {
+    duck.definePayloadlessAction(
+      'RESET2',
+      () => ({})
+    )
+  }).toThrowError(`Duplicate action type: counter/RESET2`)
 })

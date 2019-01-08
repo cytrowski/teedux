@@ -3,23 +3,30 @@ type TActionCreator<T> = (payload: T) => ({
   type: string,
   payload: T
 })
+type TPayloadlessActionCreator = () => ({
+  type: string
+})
 interface IReduxStandardAction {
   type: string
   payload?: object
 }
-type TIdentity = <T>(x: T) => T
+// type TIdentity = <T>(x: T) => T
 interface IActionTypeIndex {
   [key: string]: boolean
 }
 interface IReduxDuck<S> {
   getReducer: () => (state: S | undefined, action: IReduxStandardAction) => S,
-  defineAction: <T extends object | void>(
+  defineAction: <T extends (object | undefined)>(
     actionType: string,
     handler: THandler<S, T>
-  ) => TActionCreator<T>
+  ) => TActionCreator<T>,
+  definePayloadlessAction: (
+    actionType: string,
+    handler: THandler<S, undefined>
+  ) => TPayloadlessActionCreator,
 }
 
-const identity: TIdentity = x => x
+// const identity: TIdentity = x => x
 const actionTypeIndex: IActionTypeIndex = {}
 
 export const makeReduxDuck = <S>(
@@ -55,6 +62,20 @@ export const makeReduxDuck = <S>(
       return (payload?) => ({
         type,
         payload
+      })
+    },
+    definePayloadlessAction: (actionType, handler) => {
+      const type = `${prefix}/${actionType}`
+
+      if (actionTypeIndex[type] === true) {
+        throw new Error(`Duplicate action type: ${type}`)
+      }
+
+      actionTypeIndex[type] = true
+      actionHandlers[type] = handler
+
+      return () => ({
+        type
       })
     }
   }
