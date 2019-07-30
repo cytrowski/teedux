@@ -6,8 +6,9 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc --declaration",
-    "test": "jest --coverage",
-    "dtslint": "dtslint src/types-test"
+    "test": "jest --coverage & yarn dtslint",
+    "dtslint": "dtslint src/types-test && echo 'dtslint done'",
+    "dtslint:watch": "onchange -i 'src/**/*.ts' -- yarn dtslint"
   },
   "keywords": [
     "redux",
@@ -20,6 +21,7 @@
     "@types/jest": "23.3.12",
     "dtslint": "^0.9.0",
     "jest": "23.6.0",
+    "onchange": "^6.0.0",
     "ts-jest": "23.10.5",
     "typescript": "3.2.2"
   },

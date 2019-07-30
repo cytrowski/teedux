@@ -7,7 +7,9 @@
       "strictNullChecks": true,
       "strictFunctionTypes": true,
       "baseUrl": ".",
-      "paths": {},
+      "paths": {
+          "teedux": [".."]
+      },
       "lib": [
         "es6", "dom", "es2017.object"
       ]
