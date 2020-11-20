@@ -12,6 +12,7 @@
 - It's very opinionated - I assume you use `redux-thunk` for side effects but there is a way of making it work with sagas too
 - I assume you know [Ducks: Redux Reducer Bundles](https://github.com/erikras/ducks-modular-redux)
 - I assume you use `combineReducers`
+- See also [redux-toolkit](https://redux.js.org/redux-toolkit/overview) official toolkit from redux dev-team for resolving the same problems
 
 ## Motivation
 
